@@ -1,0 +1,74 @@
+# SimpleScalar Pipeline Simulator (sim-pipe)
+
+This simulator implements a 5-stage pipeline simulation with the following assumptions:
+
+* Perfect instruction cache (no I-cache misses)
+* Perfect data cache (no D-cache misses)
+* No branch prediction
+* Split-phase register access for the writeback (WB) stage
+  (writes occur in first half of cycle, reads in second half)
+
+## Pipeline Stages
+
+The simulator models a classic 5-stage pipeline:
+1. Fetch (IF)
+2. Decode (ID)
+3. Execute (EX)
+4. Memory (MEM)
+5. Writeback (WB)
+
+## Basic Usage
+
+```
+./sim-pipe [options] program [program-args]
+```
+
+## Pipeline View
+
+To get clean pipeline view output similar to the example:
+
+```
+Stage   Cycle #  Inst #    Address         Assembly Code
+fetch:      1      0 [xor: 0x7fff8008] @ 0x004000f0: addiu     r4,r0,0 
+decod:      1      1 [xor: 0x7fff8008] @ 0x004000f0: addiu     r4,r0,0
+exec :      1      2 [xor: 0x7fff8008] @ 0x004000f0: addiu     r4,r0,0
+mem  :      1      3 [xor: 0x7fff8008] @ 0x004000f0: addiu     r4,r0,0
+wb   :      1      4 [xor: 0x7fff8008] @ 0x004000f0: addiu     r4,r0,0
+```
+
+The "Inst #" column indicates the pipeline stage:
+- 0 = Fetch
+- 1 = Decode
+- 2 = Execute
+- 3 = Memory
+- 4 = Writeback
+
+Use the included script:
+
+```
+./pipe-view.sh [options] program [program-args]
+```
+
+## Options
+
+* `-disable:forwarding` - Disable data forwarding in the pipeline (default: true)
+* `-max:inst <num>` - Maximum number of instructions to execute (default: unlimited)
+* `-quiet` - Suppress headers for cleaner output (default: false)
+* `-show:stats` - Show statistics at the end of simulation (default: false)
+
+## Examples
+
+1. Run with limited instructions:
+   ```
+   ./pipe-view.sh -max:inst 10 tests-pisa/bin.little/test-math
+   ```
+
+2. Run with statistics output:
+   ```
+   ./sim-pipe -show:stats tests-pisa/bin.little/test-math
+   ```
+
+3. Run with full pipeline output:
+   ```
+   ./sim-pipe -quiet tests-pisa/bin.little/test-math
+   ``` 

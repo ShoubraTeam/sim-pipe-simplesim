@@ -1,0 +1,35 @@
+fetch:        1       0 [xor: 0x7fff8018] @ 0x00400140: lw        r16,0(r29)
+fetch:        2       0 [xor: 0x7fff8008] @ 0x00400148: lui       r28,0x1001
+decod:        2       1 [xor: 0x7fff8008] @ 0x00400140: lw        r16,0(r29)
+fetch:        3       0 [xor: 0x7fff8038] @ 0x00400150: addiu     r28,r28,-24528
+decod:        3       1 [xor: 0x7fff8038] @ 0x00400148: lui       r28,0x1001
+exec :        3       2 [xor: 0x7fff8038] @ 0x00400140: lw        r16,0(r29)
+fetch:        4       0 [xor: 0x7fff8008] @ 0x00400158: addiu     r17,r29,4
+decod:        4       1 [xor: 0x7fff8008] @ 0x00400150: addiu     r28,r28,-24528
+exec :        4       2 [xor: 0x7fff8008] @ 0x00400148: lui       r28,0x1001
+mem  :        4       3 [xor: 0x7fff8008] @ 0x00400140: lw        r16,0(r29)
+fetch:        5       0 [xor: 0x7ffb8018] @ 0x00400160: addiu     r3,r17,4
+decod:        5       1 [xor: 0x7ffb8018] @ 0x00400158: addiu     r17,r29,4
+exec :        5       2 [xor: 0x7ffb8018] @ 0x00400150: addiu     r28,r28,-24528
+mem  :        5       3 [xor: 0x7ffb8018] @ 0x00400148: lui       r28,0x1001
+wb   :        5       4 [xor: 0x7ffb8018] @ 0x00400140: lw        r16,0(r29)
+fetch:        6       0 [xor: 0x7fff800c] @ 0x00400168: sll       r2,r16,2
+decod:        6       1 [xor: 0x7fff800c] @ 0x00400160: addiu     r3,r17,4
+exec :        6       2 [xor: 0x7fff800c] @ 0x00400158: addiu     r17,r29,4
+mem  :        6       3 [xor: 0x7fff800c] @ 0x00400150: addiu     r28,r28,-24528
+wb   :        6       4 [xor: 0x7fff800c] @ 0x00400148: lui       r28,0x1001
+fetch:        7       0 [xor: 0x7fff82fe] @ 0x00400170: addu      r3,r3,r2
+decod:        7       1 [xor: 0x7fff82fe] @ 0x00400168: sll       r2,r16,2
+exec :        7       2 [xor: 0x7fff82fe] @ 0x00400160: addiu     r3,r17,4
+mem  :        7       3 [xor: 0x7fff82fe] @ 0x00400158: addiu     r17,r29,4
+wb   :        7       4 [xor: 0x7fff82fe] @ 0x00400150: addiu     r28,r28,-24528
+fetch:        8       0 [xor: 0x7ffb810a] @ 0x00400178: addu      r18,r0,r3
+decod:        8       1 [xor: 0x7ffb810a] @ 0x00400170: addu      r3,r3,r2
+exec :        8       2 [xor: 0x7ffb810a] @ 0x00400168: sll       r2,r16,2
+mem  :        8       3 [xor: 0x7ffb810a] @ 0x00400160: addiu     r3,r17,4
+wb   :        8       4 [xor: 0x7ffb810a] @ 0x00400158: addiu     r17,r29,4
+fetch:        9       0 [xor: 0x7fff811e] @ 0x00400180: sw        r18,-30220(r28)
+decod:        9       1 [xor: 0x7fff811e] @ 0x00400178: addu      r18,r0,r3
+exec :        9       2 [xor: 0x7fff811e] @ 0x00400170: addu      r3,r3,r2
+mem  :        9       3 [xor: 0x7fff811e] @ 0x00400168: sll       r2,r16,2
+wb   :        9       4 [xor: 0x7fff811e] @ 0x00400160: addiu     r3,r17,4

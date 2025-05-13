@@ -1,0 +1,74 @@
+# Branch Pipeline Visualization Tool
+
+This tool displays the behavior of branch instructions in the SimpleScalar 5-stage pipeline, simulating a processor without branch prediction that stalls rather than flushes the pipeline.
+
+## Purpose
+
+The `branch-view.sh` script helps visualize how branch instructions affect the pipeline in SimpleScalar's `sim-pipe` simulator. It shows:
+
+1. The execution of branch instructions in the pipeline
+2. Pipeline stalls that occur when waiting for branch resolution
+3. Statistics about branch instructions and their impact on performance
+
+## Features
+
+- Highlights branch instructions (jal, jr, j, beq, bne, etc.)
+- Shows pipeline stalls with a clear "PIPELINE STALL - WAITING FOR BRANCH" message
+- Provides statistics on branch activity and stall cycles in the pipeline
+
+## Usage
+
+```bash
+./branch-view.sh [options] [sim-pipe options] program [args]
+```
+
+Options:
+- `-h, --help`: Show help information
+- `-b, --branch-only`: Only show pipeline activity around branches
+
+For example:
+```bash
+# Run with default settings (100 instructions)
+./branch-view.sh tests-pisa/bin.little/test-math
+
+# Show only activity around branches
+./branch-view.sh -b tests-pisa/bin.little/test-math
+
+# Run more instructions
+MAX_INST=200 ./branch-view.sh tests-pisa/bin.little/test-math
+```
+
+## Understanding Branch Behavior (No Branch Prediction)
+
+When a branch is executed without branch prediction:
+
+1. The branch instruction enters the pipeline and proceeds to the execute stage.
+2. The processor doesn't know which instruction to fetch next until the branch condition is resolved in the execute stage.
+3. The pipeline must stall, waiting for the branch resolution.
+4. These stalls are clearly shown with "*** PIPELINE STALL - WAITING FOR BRANCH ***" message.
+5. This represents the wasted cycles as the processor waits to determine the branch path.
+
+## Analyzing the Pipeline Display
+
+The output shows the 5-stage pipeline with:
+
+- **Stage**: The pipeline stage (fetch, decode, execute, memory, writeback)
+- **Cycle #**: The current cycle number
+- **Inst #**: The pipeline stage number (0=fetch, 1=decode, 2=execute, 3=memory, 4=writeback)
+- **Address**: The instruction address
+- **Assembly Code**: The assembly instruction being executed
+
+## Statistics
+
+The tool displays useful branch statistics:
+
+- **Branch instructions found**: Total number of branch instructions executed
+- **Pipeline stalls**: Number of cycles wasted due to stalls from branches
+- **Stall/branch ratio**: How many stall cycles occur per branch on average
+
+## Performance Impact of Branches
+
+Without branch prediction, branch instructions significantly impact processor performance:
+- Each branch requires stalling the pipeline until the branch direction is known
+- This leads to wasted cycles (pipeline bubbles) where no new instructions can enter the pipeline
+- The stall/branch ratio shows the average performance penalty per branch instruction 
