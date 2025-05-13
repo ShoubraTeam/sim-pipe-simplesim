@@ -309,7 +309,7 @@ OBJS =	main.$(OEXT) syscall.$(OEXT) memory.$(OEXT) regs.$(OEXT) \
 #
 PROGS = sim-fast$(EEXT) sim-safe$(EEXT) sim-eio$(EEXT) \
         sim-bpred$(EEXT) sim-profile$(EEXT) \
-        sim-cache$(EEXT) sim-outorder$(EEXT) sim-pipe$(EEXT)
+        sim-cache$(EEXT) sim-outorder$(EEXT) sim-pipe$(EEXT) sim-pipe2$(EEXT)
 
 #
 # all targets, NOTE: library ordering is important...
@@ -397,6 +397,9 @@ sim-outorder$(EEXT):	sysprobe$(EEXT) sim-outorder.$(OEXT) cache.$(OEXT) bpred.$(
 
 sim-pipe$(EEXT):	sysprobe$(EEXT) sim-pipe.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
 	$(CC) -o sim-pipe$(EEXT) $(CFLAGS) sim-pipe.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
+
+sim-pipe2$(EEXT):	sysprobe$(EEXT) sim-pipe2.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
+	$(CC) -o sim-pipe2$(EEXT) $(CFLAGS) sim-pipe2.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
 
 exo libexo/libexo.$(LEXT): sysprobe$(EEXT)
 	cd libexo $(CS) \
