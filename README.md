@@ -58,7 +58,7 @@ The simulation focuses on analyzing and understanding:
 ## How to Run
 1. Clone the repository using:
     ```bash
-    git clone https://github.com/ShoubraTeam/sim-pipe-simplesim.git
+    git clone https://github.com/ShoubraTeam/understanding-how-pipelines-function.git
     ```
 2. Build the project using:
    ```bash
